@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewmodel="clr-namespace:Ecommerce.ViewModel"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F6F6F5"
+             x:Class="Ecommerce.View.TopItems">
+
+    <ContentPage.BindingContext>
+        <viewmodel:TopItemsViewModel x:Name="Reference"/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+
+        <CollectionView ItemsSource="{Binding ProductList}"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="20">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"  
+                                   ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <Label Text="Top Products"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       FontFamily="Lobster"
+                       HorizontalTextAlignment="Center"/>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItemView>
+                                    <Grid WidthRequest="80">
+                                        <BoxView CornerRadius="12,0,12,0"
+                                                 BackgroundColor="LightGreen">
+                                            <BoxView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Reference}, Path=LeftCommand}"
+                                                                      CommandParameter="{Binding .}"/>
+                                            </BoxView.GestureRecognizers>
+                                        </BoxView>
+                                        <Label HorizontalTextAlignment="Center"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Source={x:Reference Reference}, Path=Star}"
+                                                          FontFamily="{StaticResource FontAwesomeRegular}"/>
+                                                    <Span Text="Favorite"
+                                                          FontFamily="Lobster"
+                                                          FontSize="15"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Reference}, Path=LeftCommand}"
+                                                                      CommandParameter="{Binding .}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItemView>
+                                    <Grid WidthRequest="80">
+                                        <BoxView CornerRadius="0,12,0,12"
+                                                 BackgroundColor="LightPink">
+                                            <BoxView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Reference}, Path=RightCommand}"
+                                                                      CommandParameter="{Binding .}"/>
+                                            </BoxView.GestureRecognizers>
+                                        </BoxView>
+                                        <Label HorizontalTextAlignment="Center"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Source={x:Reference Reference}, Path=Trash}" 
+                                                          FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                                    <Span Text="Delete"
+                                                          FontFamily="Lobster"
+                                                          FontSize="15"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Reference}, Path=RightCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <SwipeView.Content>
+                            <Frame CornerRadius="12"
+                                   Padding="12"
+                                   HasShadow="False">
+                                <Grid HeightRequest="60"
+                                      VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Grid.Column="0"
+                                         Grid.Row="0"
+                                         Margin="5,0,0,0"
+                                         VerticalOptions="Center">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0">
+                                                <Label Text="{Binding Name}"
+                                                       MaxLines="1"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                                <Label Text="{Binding Type}"
+                                                       MaxLines="1"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                            </StackLayout>
+                                            <Image Grid.Column="1"
+                                                   Source="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Golden_star.svg/1200px-Golden_star.svg.png"
+                                                   IsVisible="{Binding IsFavorite}"
+                                                   HeightRequest="30"
+                                                   WidthRequest="30"
+                                                   Opacity="0.75"
+                                                   Aspect="AspectFit"
+                                                   HorizontalOptions="End"
+                                                   VerticalOptions="Center"/>
+
+                                        </Grid>
+                                    </StackLayout>
+
+                                    <Image Grid.Column="1"
+                                           Grid.Row="0"
+                                           Source="{Binding ImageUrl}"
+                                           Opacity="0.75"
+                                           Aspect="AspectFit"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center"/>
+                                    
+                                </Grid>
+                            </Frame>
+                        </SwipeView.Content>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+
+</ContentPage>

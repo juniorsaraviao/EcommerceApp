@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fontawesome="clr-namespace:Ecommerce.Util" 
+             xmlns:viewmodel="clr-namespace:Ecommerce.ViewModel"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F6F6F5"
+             x:Class="Ecommerce.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainPageViewModel x:Name="Reference"/>
+    </ContentPage.BindingContext>
+
+
+    <ScrollView Margin="10"
+                Padding="5">
+        <StackLayout>
+            <!--Burger Icon / Search and Cart-->
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcon.Bar}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       FontSize="20"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2"
+                         Spacing="30"
+                         Orientation="Horizontal"
+                  HorizontalOptions="EndAndExpand">
+
+                    <Label 
+                       HorizontalOptions="Start"
+                       Text="{x:Static fontawesome:FontAwesomeIcon.Search}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       FontSize="20"/>
+                    <Label 
+                       Text="{x:Static fontawesome:FontAwesomeIcon.Cart}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       FontSize="20"/>
+                </StackLayout>
+            </Grid>
+
+            <Label Text="Explore"
+                   Margin="10"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   FontFamily="Lobster"
+                   HorizontalTextAlignment="Start"/>
+            
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding CategoryList}"
+                                SelectionMode="None"
+                                VerticalOptions="FillAndExpand"
+                                HeightRequest="90"
+                                Margin="5">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"  
+                                       ItemSpacing="20"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5">
+                                <Button Text="{Binding CategoryFont}" CornerRadius="25"
+                                    FontSize="15"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    HeightRequest="50"
+                                    WidthRequest ="50"/>
+                                <Label Text="{Binding CategoryName}"
+                                   HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>                
+                
+                <Label Grid.Column="0"
+                       Text="Top Products"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="10"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       FontFamily="Lobster"
+                       HorizontalTextAlignment="Start"/>
+
+                <Label Grid.Column="1"
+                       VerticalOptions="CenterAndExpand"
+                       Text="Show All »"
+                       TextColor="Red"
+                       HorizontalTextAlignment="End"
+                       FontSize="14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference Reference}, Path=TopItemsCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </Grid>
+
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding ProductList}"
+                                SelectionMode="None"
+                                VerticalOptions="FillAndExpand"
+                                HeightRequest="{Binding Source={x:Reference Reference}, Path=Height}"
+                                Margin="5">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5">
+
+                                <Frame BackgroundColor="#F6F6F5"
+                                       VerticalOptions="CenterAndExpand"
+                                       HasShadow="True">
+
+                                    <StackLayout>
+                                        <Image Source="{Binding ImageUrl}"
+                                           HeightRequest="80"
+                                           WidthRequest="80"
+                                           Aspect="AspectFit"/>
+
+                                        <Label Text="{Binding Name}"
+                                               MaxLines="1"
+                                               HorizontalTextAlignment="Center"/>
+                                        <StackLayout Orientation="Horizontal"
+                                                     IsVisible="{Binding HasPreviousPrice}">
+                                            <Label Text="{Binding PreviousPrice}"
+                                                   VerticalOptions="Center"
+                                                   TextDecorations="Strikethrough"
+                                                   TextColor="Gray"
+                                                   FontSize="12"/>
+                                            <Label Text="{Binding CurrentPrice}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalTextAlignment="Center"
+                                                   TextColor="Red"
+                                                   FontSize="15"/>                                            
+                                        </StackLayout>
+                                        <StackLayout IsVisible="{Binding HasNoPreviousPrice}">                                            
+                                            <Label Text="{Binding CurrentPrice}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalTextAlignment="Center"
+                                                   TextColor="Red"
+                                                   FontSize="15"/>
+                                        </StackLayout>
+                                    </StackLayout>                                    
+
+                                </Frame>
+                                
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ScrollView>
+
+</ContentPage>
