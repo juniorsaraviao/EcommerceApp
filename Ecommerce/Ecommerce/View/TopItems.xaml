@@ -130,7 +130,6 @@
                                             </Grid.ColumnDefinitions>
                                             <StackLayout Grid.Column="0">
                                                 <Label Text="{Binding Name}"
-                                                       MaxLines="1"
                                                        FontSize="15"
                                                        FontAttributes="Bold"
                                                        HorizontalOptions="Start"

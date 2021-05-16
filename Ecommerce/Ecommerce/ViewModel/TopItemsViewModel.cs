@@ -52,9 +52,8 @@ namespace Ecommerce.ViewModel
       public async Task LoadTopProducts()
       {
          using (UserDialogs.Instance.Loading())
-         {
-            await Task.Delay(2000);
-            ProductList = Product.ProductsList();
+         {            
+            ProductList = await Task.FromResult( Product.ProductsList() );
          }
       }
 

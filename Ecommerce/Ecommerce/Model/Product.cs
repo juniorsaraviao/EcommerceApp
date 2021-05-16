@@ -23,7 +23,7 @@ namespace Ecommerce.Model
                Type = "Shoes",
                CurrentPrice = "$259.99",
                PreviousPrice = "$299.99",
-               ImageUrl = "https://static.netshoes.com.ar/produtos/zapatillas-nike-air-max-oketo/02/001-6173-002/001-6173-002_zoom1.jpg?ims=544x"
+               ImageUrl = "https://martinvalen.com/13342/heren-low-top-sneakers-schoenen-wit.jpg"
             },
             new Product()
             {
@@ -45,7 +45,7 @@ namespace Ecommerce.Model
                Name = "Sport Jacket Size M",
                Type = "Clothes",
                CurrentPrice = "$129.99",
-               ImageUrl = "https://http2.mlstatic.com/casaca-deportivo-del-chelsea-100-original-a-pedido-D_NQ_NP_661003-MPE40971409411_032020-F.jpg"
+               ImageUrl = "https://imcut.jollychic.com//uploads/jollyimg/imageService/img/goods/2019/10/10/17/15/937e2222-b34c-486d-818b-1c70097528b2.jpg"
             },
             new Product()
             {
@@ -53,7 +53,7 @@ namespace Ecommerce.Model
                Type = "Clothes",
                CurrentPrice = "$200.99",
                PreviousPrice = "250.99",
-               ImageUrl = "https://runastore.pe/media/catalog/product/cache/1/image/1600x/040ec09b1e35df139433887a97daa66f/9/2/928635-010-001__1_1.jpg"
+               ImageUrl = "https://home.ripley.com.pe/Attachment/WOP_5/2020266331623/2020266331623_2.jpg"
             },
             new Product()
             {
@@ -67,7 +67,7 @@ namespace Ecommerce.Model
             {
                Name = "Donovan Wallet",
                Type = "Wallet",
-               ImageUrl = "https://tiendasel.vteximg.com.br/arquivos/ids/2029801-1000-1000/billetera-donovan-100--cuero-negro-std.jpg?v=637272779142270000"
+               ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/41u3oquZk5L.jpg"
             },
             new Product()
             {
@@ -79,13 +79,13 @@ namespace Ecommerce.Model
             {
                Name = "Adidas Socks",
                Type = "Socks",
-               ImageUrl = "https://assets.adidas.com/images/w_600,f_auto,q_auto/093e37f991c247d6a765a9d300acca3e_9366/Medias_Tobilleras_(3_Pares)_Plomo_DZ9400_DZ9400_03_standard.jpg"
+               ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-2EZzaj8-2_2GmRcCGKzn9yOqWq20Qwr-8w&usqp=CAU"
             },
             new Product()
             {
                Name = "Short Dark Blue",
                Type = "Sport",
-               ImageUrl = "https://www.joma-sport.com/files/0001/jomabeta987543098359809538245098/web.system/assets/products/20161128183701.100568.301.jpg"
+               ImageUrl = "https://www.kentwang.com/media/catalog/product/cache/76365af441ea129bbed454bf05fc598f/1/5/15003909791_397a10f5d8_k_1.jpg"
             }
          };
       }
